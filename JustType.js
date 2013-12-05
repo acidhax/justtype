@@ -1,14 +1,14 @@
 var JustType = function () {
 	SimplEE.EventEmitter.call(this);
 	this._el = document.createElement("div");
-	this._el.classList.add("disco-just-type-container");
-	/*this._el.classList.add("disco-hidden");*/
-	this._el.classList.add("disco-just-type-hint");
+	this._el.classList.add("matbee-just-type-container");
+	/*this._el.classList.add("matbee-hidden");*/
+	this._el.classList.add("matbee-just-type-hint");
 	this._cursorEl = document.createElement("div");
-	this._cursorEl.classList.add("disco-cursor");
+	this._cursorEl.classList.add("matbee-cursor");
 
 	this._inputEl = document.createElement("input");
-	this._inputEl.classList.add("disco-just-type");
+	this._inputEl.classList.add("matbee-just-type");
 
 	this._el.appendChild(this._inputEl);
 	this._el.appendChild(this._cursorEl);
@@ -36,11 +36,11 @@ var JustType = function () {
 JustType.prototype = Object.create(SimplEE.EventEmitter.prototype);
 
 JustType.prototype.windowFocused = function(ev) {
-	this._el.classList.add("disco-NF-focus");
+	this._el.classList.add("matbee-NF-focus");
 }
 
 JustType.prototype.windowBlurred = function(ev) {
-	this._el.classList.remove("disco-NF-focus");
+	this._el.classList.remove("matbee-NF-focus");
 }
 
 JustType.prototype.documentKeydown = function(ev) {
@@ -107,9 +107,9 @@ JustType.prototype.inputBlur = function(ev) {
 };
 
 JustType.prototype.toggleChatOff = function() {
-	this._el.classList.add("disco-hidden-none");
-	this._el.classList.remove("disco-in-movie-hint");
-	this._el.classList.remove("disco-just-type-hint");
+	this._el.classList.add("matbee-hidden-none");
+	this._el.classList.remove("matbee-in-movie-hint");
+	this._el.classList.remove("matbee-just-type-hint");
 	$(this._el).find('input').attr("placeholder","");
 	this.active = false;
 	$(this._inputEl).val("");
@@ -118,20 +118,20 @@ JustType.prototype.toggleChatOff = function() {
 }
 
 JustType.prototype.toggleChatOn = function() {
-	this._el.classList.remove("disco-hidden-none");
-	this._el.classList.add("disco-in-movie-hint");
+	this._el.classList.remove("matbee-hidden-none");
+	this._el.classList.add("matbee-in-movie-hint");
 	$(this._el).find('input').attr("placeholder","");
 	this.active = false;
 	$(this._inputEl).blur();
 	$(this._inputEl).focus();
 	$(document).on("keydown", this.documentKeydownBind);
-	this._el.classList.add('disco-NF-focus');
+	this._el.classList.add('matbee-NF-focus');
 }
 
 JustType.prototype.show = function() {
 	if (this.enabled) {
-		this._el.classList.remove("disco-in-movie-hint");
-		this._el.classList.remove("disco-just-type-hint");
+		this._el.classList.remove("matbee-in-movie-hint");
+		this._el.classList.remove("matbee-just-type-hint");
 		$(this._el).find('input').attr("placeholder","");				
 		this.active = true;
 		$(this._inputEl).blur();
@@ -141,8 +141,8 @@ JustType.prototype.show = function() {
 };
 
 JustType.prototype.hide = function () {
-	this._el.classList.add("disco-in-movie-hint");
-	this._el.classList.remove("disco-just-type-hint");
+	this._el.classList.add("matbee-in-movie-hint");
+	this._el.classList.remove("matbee-just-type-hint");
 	$(this._el).find('input').attr("placeholder","");
 	this.active = false;
 	$(document).on("keydown", this.documentKeydownBind);
@@ -152,11 +152,11 @@ JustType.prototype.hide = function () {
 
 JustType.prototype.enable = function() {
 	this.enabled = true;
-	this._el.classList.remove("disco-in-movie-hint");
+	this._el.classList.remove("matbee-in-movie-hint");
 	this._el.input = $(this._inputEl).attr('placeholder','Type to chat, enter to send');
 };
 
 JustType.prototype.disable = function() {
 	this.enabled = false;
-	this._el.classList.add("disco-in-movie-hint");
+	this._el.classList.add("matbee-in-movie-hint");
 };
